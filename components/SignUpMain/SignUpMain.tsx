@@ -14,9 +14,12 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Typography from "@mui/material/Typography";
 import { Box, Container } from "@mui/system";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 import Link from "next/link";
 import { Controller, useForm } from "react-hook-form";
 import * as yup from "yup";
+import { app } from "../../firebase/firebase";
 
 type RegisterDataType = {
   firstName: string;
@@ -29,6 +32,9 @@ type RegisterDataType = {
 interface LinkProps {
   pathName: string;
 }
+
+const auth = getAuth(app);
+
 export default function SignUpMain({ pathName }: LinkProps) {
   const schema = yup.object().shape({
     firstName: yup.string().trim().required("First name is required"),
@@ -57,9 +63,40 @@ export default function SignUpMain({ pathName }: LinkProps) {
     }
   });
 
+  const getCurrentUser = async () => {
+    try {
+      const user = getAuth().currentUser?.email;
+      const user_doc = await getDoc(
+        doc(getFirestore(), "users", user as string)
+      );
+      console.log(user_doc.data(), user_doc.id);
+    } catch (err) {
+      throw err;
+    }
+  };
+
   const onSubmit = (data: RegisterDataType) => {
     console.log(data, "data");
+    createUserWithEmailAndPassword(auth, data?.email, data?.password)
+      .then(async (userCredential) => {
+        const { user } = userCredential;
+        console.log(user, "user");
+        try {
+          await setDoc(doc(getFirestore(), "users", data?.email), {
+            firstName: data?.firstName,
+            lastName: data?.lastName,
+            role: data?.role
+          });
+          getCurrentUser();
+        } catch (err) {
+          throw err;
+        }
+      })
+      .catch((error) => {
+        console.error("Error creating user: ", error);
+      });
   };
+
   return (
     <SignInWrapper>
       <Container fixed>
