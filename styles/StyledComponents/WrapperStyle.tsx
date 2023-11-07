@@ -1,3 +1,4 @@
+import { primaryColors } from "@/themes/_muiPalette";
 import styled from "@emotion/styled";
 import Box from "@mui/material/Box";
 
@@ -16,13 +17,13 @@ export const WrapperStyle = styled(Box)`
   }
 
   a {
-    color: #00a5d0;
+    color: ${primaryColors?.primary};
     display: inline-block;
     text-decoration: none;
   }
 
   a:hover {
-    color: #00a5d0;
+    color: ${primaryColors?.primary};
   }
 
   a:focus {
@@ -37,7 +38,7 @@ export const WrapperStyle = styled(Box)`
   h6 {
     padding: 0;
     margin: 0;
-    color: var(--color07171E);
+    color: ${primaryColors?.mainFontColor};
   }
   h1 {
     text-transform: capitalize;
@@ -145,7 +146,6 @@ export const WrapperStyle = styled(Box)`
     appearance: none;
   }
 
-  button:hover,
   input[type="button"]:hover,
   input[type="submit"]:hover {
     background-color: #51bff0;
@@ -416,4 +416,26 @@ export const WrapperStyle = styled(Box)`
     }
   }
   //   ======================
+
+  .left_part {
+    width: 291px;
+    flex-basis: 291px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    border-right: 1px solid ${primaryColors?.borderColor};
+    background: ${primaryColors?.white};
+  }
+  .rgt_part {
+    width: calc(100% - 291px);
+    flex-basis: calc(100% - 291px);
+    margin-left: auto;
+    padding-top: 86px;
+  }
+  .body_main {
+    padding: 25px 30px;
+    background-color: ${primaryColors?.white};
+  }
 `;

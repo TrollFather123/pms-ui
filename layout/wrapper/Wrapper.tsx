@@ -43,7 +43,7 @@ const Wrapper = (props: wrapperProps) => {
 
   routerText.shift();
   const favText = routerText.join("").toString().toUpperCase();
-  const projectName = "Procell";
+  const projectName = "PMS";
 
   useOnlineStatus();
 
@@ -66,7 +66,9 @@ const Wrapper = (props: wrapperProps) => {
         <Box className="left_part">
           <SidebarPanel />
         </Box>
-        <Box className="rgt_part">{children}</Box>
+        <Box className="rgt_part">
+          <Box className="body_main">{children}</Box>
+        </Box>
       </Stack>
 
       <Backdrop

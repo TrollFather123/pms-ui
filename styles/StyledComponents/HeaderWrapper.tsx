@@ -3,34 +3,87 @@ import styled from "@emotion/styled";
 import Box from "@mui/material/Box";
 
 export const HeaderWrap = styled(Box)`
-  background: ${primaryColors.white};
+  background: ${primaryColors.primary1};
   box-shadow: 0px 4px 58px rgba(0, 0, 0, 0.07);
+  width: calc(100% - 291px);
+  margin-left: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 99;
   .MuiToolbar-root {
     min-height: auto;
     padding: 0;
+  }
+  .hdr_left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p {
+      color: ${primaryColors?.white};
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 25px;
+      text-transform: capitalize;
+    }
+    i {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+    }
   }
   .hdr_rgt {
     margin-left: 20px;
     display: flex;
     align-items: center;
     button {
-      padding: 11px 42px;
+      padding: 0;
       min-width: auto;
+      &:hover {
+        background-color: transparent;
+      }
     }
-    .MuiBadge-badge {
-      right: 4px;
-      top: 5px;
-      min-width: 10px;
-      height: 10px;
-    }
-    .cart_icon{
-      margin-right: 18px;
+    .menu_list {
+      display: flex;
+      align-items: center;
+      li {
+        width: auto;
+        padding: 0 15px;
+        &:last-child {
+          padding-right: 0;
+        }
+        &:first-child {
+          padding-left: 0;
+        }
+      }
     }
   }
-
+  .avatar_image {
+    width: 42px;
+    height: 42px;
+    margin-right: 8px;
+  }
+  .user_select_btn {
+    color: ${primaryColors?.white};
+    font-size: 12px;
+    font-weight: 500;
+    line-height: normal;
+    > span {
+      color: inherit;
+      display: inline-block;
+      margin: 0 20px 0 0;
+    }
+    > i {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
   .headerContainer {
     background-color: transparent !important;
-    padding: 20px 0;
+    padding: 20px 40px;
     transition: all 0.4s;
   }
 

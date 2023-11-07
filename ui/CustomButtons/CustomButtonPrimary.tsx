@@ -4,9 +4,9 @@ import Button, { ButtonProps } from "@mui/material/Button";
 
 const CustomButtonWrapper = styled(Button)`
   display: flex;
-  padding: 16px 44px;
-  border-radius: 50px;
-  min-width: 194px;
+  padding: 13px 44px;
+  border-radius: 5px;
+  min-width: 196px;
   justify-content: center;
   align-items: center;
   &.Mui-disabled {
@@ -30,16 +30,16 @@ const CustomButtonWrapper = styled(Button)`
       color: ${primaryColors?.black};
     }
   }
-  p {
-    font-size: 16px;
-    font-weight: 500;
-    color: ${primaryColors?.white};
-  }
+
   span {
-    div {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    color: ${primaryColors?.white};
+    font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+  }
+  &:hover {
+    span {
+      color: ${primaryColors?.primary1};
     }
   }
   /* img {

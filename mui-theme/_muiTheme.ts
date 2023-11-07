@@ -17,23 +17,23 @@ export const MuiThemeOptions = (mode: PaletteMode): ThemeOptions => {
   return {
     palette: pallete(mode),
     typography: {
-      fontFamily: ["Roboto"].join(","),
+      fontFamily: ["Montserrat"].join(","),
       fontSize: 16,
       h1: {
         fontSize: "67px",
         lineHeight: "1.1em",
         fontWeight: "700",
-        fontFamily: "Roboto",
+        fontFamily: "Montserrat",
         "@media(max-width:991px)": {
           fontSize: "22px",
           lineHeight: "1.1em"
         }
       },
       h2: {
-        fontSize: "106px",
+        fontSize: "20px",
         lineHeight: "1.1em",
-        fontWeight: "400",
-        fontFamily: "Roboto",
+        fontWeight: "700",
+        fontFamily: "Montserrat",
         "@media(max-width:991px)": {
           fontSize: "22px",
           lineHeight: "26px"
@@ -43,7 +43,7 @@ export const MuiThemeOptions = (mode: PaletteMode): ThemeOptions => {
         fontSize: "20px",
         lineHeight: "1.1em",
         fontWeight: "700",
-        fontFamily: "Roboto",
+        fontFamily: "Montserrat",
         "@media(max-width:991px)": {
           fontSize: "18px",
           lineHeight: "1.1em"
@@ -53,7 +53,7 @@ export const MuiThemeOptions = (mode: PaletteMode): ThemeOptions => {
         fontSize: "18px",
         lineHeight: "1.3",
         fontWeight: "500",
-        fontFamily: "Roboto",
+        fontFamily: "Montserrat",
         "@media(max-width:991px)": {
           fontSize: "16px",
           lineHeight: "1.3"
@@ -63,7 +63,7 @@ export const MuiThemeOptions = (mode: PaletteMode): ThemeOptions => {
         fontSize: "15px",
         lineHeight: "1.4",
         fontWeight: "500",
-        fontFamily: "Roboto",
+        fontFamily: "Montserrat",
         "@media(max-width:991px)": {
           fontSize: "12px",
           lineHeight: "1.4"
@@ -73,7 +73,7 @@ export const MuiThemeOptions = (mode: PaletteMode): ThemeOptions => {
         fontSize: "12px",
         lineHeight: "1.5",
         fontWeight: "500",
-        fontFamily: "Roboto",
+        fontFamily: "Montserrat",
         "@media(max-width:991px)": {
           fontSize: "12px",
           lineHeight: "1.5"
@@ -82,17 +82,17 @@ export const MuiThemeOptions = (mode: PaletteMode): ThemeOptions => {
       body1: {
         fontSize: "16px",
         lineHeight: "1.5em",
-        color: "#8F98A8"
+        color: primaryColors?.textDisabled
       },
       body2: {
         fontSize: "12px",
         lineHeight: "1.5em",
-        color: "#8F98A8"
+        color: primaryColors?.textDisabled
       },
       caption: {
         fontSize: "14px",
         lineHeight: "1.5em",
-        color: "#8F98A8"
+        color: primaryColors?.textDisabled
       }
     },
 
@@ -260,12 +260,12 @@ export const MuiThemeOptions = (mode: PaletteMode): ThemeOptions => {
             ) {
               return {
                 // backgroundColor: primaryColors?.primary,
-                background: ` linear-gradient(279deg, ${primaryColors?.primary1} -7.77%, ${primaryColors?.primary} 109.39%);`,
-                borderRadius: "50px",
+                background: primaryColors?.primary1,
+
+                border: `1px solid ${primaryColors?.primary1}`,
 
                 "&:hover": {
-                  background: ` linear-gradient(279deg, ${primaryColors?.primary} -7.77%, ${primaryColors?.primary1} 109.39%);`,
-                  color: primaryColors?.white
+                  background: primaryColors?.white
                 }
               };
             }
