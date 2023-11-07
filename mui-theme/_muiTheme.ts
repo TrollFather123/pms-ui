@@ -82,17 +82,17 @@ export const MuiThemeOptions = (mode: PaletteMode): ThemeOptions => {
       body1: {
         fontSize: "16px",
         lineHeight: "1.5em",
-        color: primaryColors?.textDisabled
+        color: primaryColors?.mainFontColor
       },
       body2: {
         fontSize: "12px",
         lineHeight: "1.5em",
-        color: primaryColors?.textDisabled
+        color: primaryColors?.mainFontColor
       },
       caption: {
         fontSize: "14px",
         lineHeight: "1.5em",
-        color: primaryColors?.textDisabled
+        color: primaryColors?.mainFontColor
       }
     },
 

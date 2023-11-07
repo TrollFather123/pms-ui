@@ -1,3 +1,4 @@
+import { primaryColors } from "@/themes/_muiPalette";
 import styled from "@emotion/styled";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -6,37 +7,69 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
-const CustomTableWrapper = styled(TableContainer)``;
+const CustomTableWrapper = styled(TableContainer)`
+  border-radius: 10px;
+  border: 1px solid ${primaryColors?.borderColor};
+  background: ${primaryColors?.white};
+  overflow: hidden;
+  table {
+    thead {
+      tr {
+        th {
+          color: ${primaryColors?.mainFontColor};
+          font-size: 18px;
+          font-weight: 600;
+          line-height: normal;
+          padding: 25px 30px;
+        }
+      }
+    }
+    tbody {
+      tr {
+        td {
+          color: ${primaryColors?.cellColor};
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 20px;
+          padding: 25px 30px;
+        }
+      }
+    }
+  }
+`;
 
 function createData(
   name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
+  clientName: string,
+  totalHours: number,
+  startDate: string
 ) {
-  return { name, calories, fat, carbs, protein };
+  return { name, clientName, totalHours, startDate };
 }
 
 const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9)
+  createData("Maria Jonathan", "Maria Jonathan", 6, "20th June 2023"),
+  createData("Maria Jonathan", "Maria Jonathan", 6, "20th June 2023"),
+  createData("Maria Jonathan", "Maria Jonathan", 6, "20th June 2023"),
+  createData("Maria Jonathan", "Maria Jonathan", 6, "20th June 2023"),
+  createData("Maria Jonathan", "Maria Jonathan", 6, "20th June 2023"),
+  createData("Maria Jonathan", "Maria Jonathan", 6, "20th June 2023"),
+  createData("Maria Jonathan", "Maria Jonathan", 6, "20th June 2023"),
+  createData("Maria Jonathan", "Maria Jonathan", 6, "20th June 2023"),
+  createData("Maria Jonathan", "Maria Jonathan", 6, "20th June 2023"),
+  createData("Maria Jonathan", "Maria Jonathan", 6, "20th June 2023")
 ];
 
 export default function CustomTable() {
   return (
     <CustomTableWrapper>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table sx={{ minWidth: "100%" }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell align="left">Client Name</TableCell>
+            <TableCell align="left">Total Hours</TableCell>
+            <TableCell align="left">Start Date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -45,13 +78,10 @@ export default function CustomTable() {
               key={row.name}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="left">{row.name}</TableCell>
+              <TableCell align="left">{row.clientName}</TableCell>
+              <TableCell align="left">{row.totalHours} Hours</TableCell>
+              <TableCell align="left">{row.startDate}</TableCell>
             </TableRow>
           ))}
         </TableBody>

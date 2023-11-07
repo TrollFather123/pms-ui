@@ -11,6 +11,12 @@ export const HeaderWrap = styled(Box)`
   right: 0;
   top: 0;
   z-index: 99;
+  /* transition: all 0.5s ease; */
+  &.overflow_active {
+    width: calc(100% - 306px);
+    margin-right: 15px;
+    margin-left: auto;
+  }
   .MuiToolbar-root {
     min-height: auto;
     padding: 0;

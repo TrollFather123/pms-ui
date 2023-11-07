@@ -1,0 +1,12 @@
+import { CustomIconProps } from "@/interface/icons.interface";
+import { primaryColors } from "@/themes/_muiPalette";
+
+export default function EyeIcon({ IconColor, IconHeight, IconWidth }: CustomIconProps) {
+    return (
+        <svg width={IconWidth || '13'} height={IconHeight || '9'} viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.5004 6.5025C7.60573 6.5025 8.50177 5.60646 8.50177 4.50113C8.50177 3.3958 7.60573 2.49976 6.5004 2.49976C5.39507 2.49976 4.49902 3.3958 4.49902 4.50113C4.49902 5.60646 5.39507 6.5025 6.5004 6.5025Z" fill={IconColor || primaryColors?.lightTxtColor} />
+            <path d="M12.8006 3.94672C11.2622 2.0877 8.93347 0.298218 6.50003 0.298218C4.0661 0.298218 1.73683 2.08895 0.199449 3.94672C-0.0664832 4.26794 -0.0664832 4.73426 0.199449 5.05548C0.585965 5.52255 1.39627 6.42417 2.47851 7.21197C5.20411 9.19613 7.78994 9.20051 10.5215 7.21197C11.6038 6.42417 12.4141 5.52255 12.8006 5.05548C13.0658 4.73489 13.0671 4.26899 12.8006 3.94672ZM6.50003 1.69918C8.04509 1.69918 9.30195 2.95604 9.30195 4.5011C9.30195 6.04616 8.04509 7.30303 6.50003 7.30303C4.95497 7.30303 3.6981 6.04616 3.6981 4.5011C3.6981 2.95604 4.95497 1.69918 6.50003 1.69918Z" fill={IconColor || primaryColors?.lightTxtColor} />
+        </svg>
+
+    )
+}

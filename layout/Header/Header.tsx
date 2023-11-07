@@ -36,9 +36,15 @@ export default function Header(props: Props) {
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
+    if (typeof window !== "undefined") {
+      document.querySelector(".main_head")?.classList.add("overflow_active");
+    }
   };
   const handleClose = () => {
     setAnchorEl(null);
+    if (typeof window !== "undefined") {
+      document.querySelector(".main_head")?.classList.remove("overflow_active");
+    }
   };
 
   const [anchorElNotification, setAnchorElNotification] =
@@ -48,18 +54,30 @@ export default function Header(props: Props) {
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     setAnchorElNotification(event.currentTarget);
+    if (typeof window !== "undefined") {
+      document.querySelector(".main_head")?.classList.add("overflow_active");
+    }
   };
   const handleCloseForNotification = () => {
     setAnchorElNotification(null);
+    if (typeof window !== "undefined") {
+      document.querySelector(".main_head")?.classList.remove("overflow_active");
+    }
   };
 
   const [userSelect, setUserSelect] = useState<null | HTMLElement>(null);
   const openUser = Boolean(userSelect);
   const handleClickUser = (event: React.MouseEvent<HTMLButtonElement>) => {
     setUserSelect(event.currentTarget);
+    if (typeof window !== "undefined") {
+      document.querySelector(".main_head")?.classList.add("overflow_active");
+    }
   };
   const handleCloseUser = () => {
     setUserSelect(null);
+    if (typeof window !== "undefined") {
+      document.querySelector(".main_head")?.classList.remove("overflow_active");
+    }
   };
 
   return (

@@ -106,22 +106,26 @@ export const WrapperStyle = styled(Box)`
 
   ::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
-    color: pink;
+    color: ${primaryColors?.colorGrey};
+    opacity: 1;
   }
 
   ::-moz-placeholder {
     /* Firefox 19+ */
-    color: pink;
+    color: ${primaryColors?.colorGrey};
+    opacity: 1;
   }
 
   :-ms-input-placeholder {
     /* IE 10+ */
-    color: pink;
+    color: ${primaryColors?.colorGrey};
+    opacity: 1;
   }
 
   :-moz-placeholder {
     /* Firefox 18- */
-    color: pink;
+    color: ${primaryColors?.colorGrey};
+    opacity: 1;
   }
 
   /* button, */
@@ -186,69 +190,6 @@ export const WrapperStyle = styled(Box)`
   // ====================================================
 
   // contact input
-  .form_group {
-    margin-bottom: 19px;
-    label {
-      display: block;
-      margin-bottom: 11px;
-    }
-    input[type="text"],
-    input[type="email"],
-    input[type="url"],
-    input[type="password"],
-    input[type="search"],
-    input[type="number"],
-    input[type="tel"],
-    input[type="range"],
-    input[type="date"],
-    input[type="month"],
-    input[type="week"],
-    input[type="time"],
-    input[type="datetime"],
-    input[type="datetime-local"],
-    input[type="color"],
-    textarea {
-      width: 100%;
-      background: var(--white);
-      border: 1px solid var(--colorEBEBEB);
-      border-radius: 10px;
-      padding: 21.5px 28px;
-      font-size: 16px;
-
-      &::placeholder {
-        /* Chrome, Firefox, Opera, Safari 10.1+ */
-        color: var(--color748992);
-        opacity: 1; /* Firefox */
-      }
-
-      &:-ms-input-placeholder {
-        /* Internet Explorer 10-11 */
-        color: var(--color748992);
-      }
-
-      &::-ms-input-placeholder {
-        /* Microsoft Edge */
-        color: var(--color748992);
-      }
-    }
-    textarea {
-      resize: none;
-      height: 140px !important;
-      font-family: "Work Sans";
-    }
-
-    /* Chrome, Safari, Edge, Opera */
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-
-    /* Firefox */
-    input[type="number"] {
-      -moz-appearance: textfield;
-    }
-  }
 
   ::-webkit-scrollbar {
     width: 6px;

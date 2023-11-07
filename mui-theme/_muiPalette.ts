@@ -4,7 +4,7 @@
 import { PaletteMode, PaletteOptions } from "@mui/material";
 
 export const primaryColors = {
-  primary: "#16A6DF",
+  primary: "#F96232",
   primary1: "#283041",
 
   primary_600: "#5871D0",
@@ -43,7 +43,11 @@ export const primaryColors = {
   tableshadow: "rgba(7, 7, 7, 0.06)",
   secondaryFont: "#202121",
   tertiaryFont: "#585858",
-  borderColor: "#eaeaea"
+  borderColor: "#eaeaea",
+  cellColor: "rgba(33, 37, 41, 0.48)",
+  color7A7A7A: "#7A7A7A",
+  lightTxtColor: "#D5DCDD",
+  colorGrey: "#A8A8A8"
 };
 
 export const pallete = (mode: PaletteMode): PaletteOptions => {

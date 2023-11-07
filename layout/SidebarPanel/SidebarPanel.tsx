@@ -9,6 +9,7 @@ import ListItem from "@mui/material/ListItem";
 import { Box } from "@mui/system";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const SidebarWrapper = styled(Box)`
   .logo_section {
@@ -48,6 +49,18 @@ const SidebarWrapper = styled(Box)`
           justify-content: center;
           margin-right: 15px;
         }
+        &:hover,
+        &.active {
+          background-color: ${primaryColors?.primary};
+          color: ${primaryColors?.white};
+          i {
+            svg {
+              path {
+                fill: currentColor;
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -62,25 +75,27 @@ export default function SidebarPanel() {
     },
     {
       name: "My profile",
-      routePath: "/",
+      routePath: "/profile",
       icon: <ProfileIcon />
     },
     {
       name: "Event Management",
-      routePath: "/",
+      routePath: "/event-management",
       icon: <DashboardIcon />
     },
     {
       name: "Enquiries",
-      routePath: "/",
+      routePath: "/enquiries",
       icon: <DashboardIcon />
     },
     {
       name: "Analytics",
-      routePath: "/",
+      routePath: "/analytics",
       icon: <DashboardIcon />
     }
   ];
+
+  const router = useRouter();
   return (
     <SidebarWrapper>
       <Box className="logo_section">
@@ -94,7 +109,10 @@ export default function SidebarPanel() {
       <List disablePadding className="nav_list">
         {navItems?.map((item, index) => (
           <ListItem disablePadding key={index}>
-            <Link href={item?.routePath}>
+            <Link
+              href={item?.routePath}
+              className={router.pathname === item?.routePath ? "active" : ""}
+            >
               <i>{item?.icon}</i>
               {item?.name}
             </Link>
