@@ -20,7 +20,7 @@ const SidebarWrapper = styled(Box)`
       font-style: normal;
       font-weight: 700;
       line-height: normal;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       i {
         display: flex;

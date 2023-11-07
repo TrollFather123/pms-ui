@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable import/order */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/self-closing-comp */
@@ -8,23 +9,47 @@ import InputFieldCommon from "@/ui/CommonInput/CommonInput";
 import CustomButtonPrimary from "@/ui/CustomButtons/CustomButtonPrimary";
 import LockIcon from "@/ui/Icons/LockIcon";
 import MailIcon from "@/ui/Icons/MailIcon";
+import { yupResolver } from "@hookform/resolvers/yup";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Typography from "@mui/material/Typography";
 import { Box, Container } from "@mui/system";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import * as yup from "yup";
+
+type LogindataType = {
+  email: string;
+  password: string;
+};
 
 interface LinkProps {
   pathName: string;
 }
 export default function SignInMain({ pathName }: LinkProps) {
-  const router = useRouter();
-  const [value, setValue] = useState("");
-  const onSubmit = () => {
-    localStorage.setItem("userName", value);
-    router.push("/");
+  const schema = yup.object().shape({
+    email: yup
+      .string()
+      .trim()
+      .email("Invalid email")
+      .required("Email is required"),
+    password: yup.string().trim().required("Password is required")
+  });
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      email: "",
+      password: ""
+    }
+  });
+
+  const onSubmit = (data: LogindataType) => {
+    console.log(data, "data");
   };
   return (
     <SignInWrapper>
@@ -38,23 +63,44 @@ export default function SignInMain({ pathName }: LinkProps) {
           </Box>
           <Box className="wrraper-formSignUp">
             <Box className="single-inputWrap full-widthInputFld">
-              <InputFieldCommon
-                placeholder="info@email.com"
-                type="email"
-                label="Email address"
-                onChange={(e) => setValue(e.target.value)}
-                startAdormentIcon
-                adorMentIcon={<MailIcon IconColor={primaryColors?.colorGrey} />}
+              <Controller
+                control={control}
+                name="email"
+                render={({ field: { onChange, value } }) => (
+                  <InputFieldCommon
+                    placeholder="info@email.com"
+                    type="email"
+                    label="Email address"
+                    startAdormentIcon
+                    adorMentIcon={
+                      <MailIcon IconColor={primaryColors?.colorGrey} />
+                    }
+                    onChange={onChange}
+                    value={value}
+                    helperText={errors.email?.message}
+                    error={Boolean(errors?.email)}
+                  />
+                )}
               />
             </Box>
             <Box className="single-inputWrap full-widthInputFld">
-              <InputFieldCommon
-                isPassword
-                type="password"
-                label="Password"
-                placeholder="Password"
-                startAdormentIcon
-                adorMentIcon={<LockIcon />}
+              <Controller
+                control={control}
+                name="password"
+                render={({ field: { onChange, value } }) => (
+                  <InputFieldCommon
+                    isPassword
+                    type="password"
+                    label="Password"
+                    placeholder="Password"
+                    startAdormentIcon
+                    adorMentIcon={<LockIcon />}
+                    onChange={onChange}
+                    value={value}
+                    helperText={errors.password?.message}
+                    error={Boolean(errors?.password)}
+                  />
+                )}
               />
             </Box>
           </Box>
@@ -68,7 +114,7 @@ export default function SignInMain({ pathName }: LinkProps) {
             <CustomButtonPrimary
               variant="contained"
               color="primary"
-              onClick={() => onSubmit()}
+              onClick={handleSubmit(onSubmit)}
             >
               <Typography variant="caption">Sign in</Typography>
             </CustomButtonPrimary>

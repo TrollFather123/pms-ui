@@ -11,7 +11,7 @@ const CustomTableWrapper = styled(TableContainer)`
   border-radius: 10px;
   border: 1px solid ${primaryColors?.borderColor};
   background: ${primaryColors?.white};
-  overflow: hidden;
+  /* overflow: hidden; */
   table {
     thead {
       tr {
