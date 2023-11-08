@@ -6,6 +6,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import Link from "next/link";
 
 const CustomTableWrapper = styled(TableContainer)`
   border-radius: 10px;
@@ -32,6 +33,11 @@ const CustomTableWrapper = styled(TableContainer)`
           font-weight: 400;
           line-height: 20px;
           padding: 25px 30px;
+          a {
+            &:hover {
+              color: ${primaryColors?.primary1};
+            }
+          }
         }
       }
     }
@@ -48,16 +54,13 @@ function createData(
 }
 
 const rows = [
-  createData("Maria Jonathan", "Maria Jonathan", 6, "20th June 2023"),
-  createData("Maria Jonathan", "Maria Jonathan", 6, "20th June 2023"),
-  createData("Maria Jonathan", "Maria Jonathan", 6, "20th June 2023"),
-  createData("Maria Jonathan", "Maria Jonathan", 6, "20th June 2023"),
-  createData("Maria Jonathan", "Maria Jonathan", 6, "20th June 2023"),
-  createData("Maria Jonathan", "Maria Jonathan", 6, "20th June 2023"),
-  createData("Maria Jonathan", "Maria Jonathan", 6, "20th June 2023"),
-  createData("Maria Jonathan", "Maria Jonathan", 6, "20th June 2023"),
-  createData("Maria Jonathan", "Maria Jonathan", 6, "20th June 2023"),
-  createData("Maria Jonathan", "Maria Jonathan", 6, "20th June 2023")
+  createData("Google UI", "Maria Jonathan", 6, "20th June 2023"),
+  createData("Google UI", "Maria Jonathan", 6, "20th June 2023"),
+  createData("Google UI", "Maria Jonathan", 6, "20th June 2023"),
+  createData("Google UI", "Maria Jonathan", 6, "20th June 2023"),
+  createData("Google UI", "Maria Jonathan", 6, "20th June 2023"),
+  createData("Google UI", "Maria Jonathan", 6, "20th June 2023"),
+  createData("Google UI", "Maria Jonathan", 6, "20th June 2023")
 ];
 
 export default function CustomTable() {
@@ -67,9 +70,10 @@ export default function CustomTable() {
         <TableHead>
           <TableRow>
             <TableCell>Name</TableCell>
-            <TableCell align="left">Client Name</TableCell>
-            <TableCell align="left">Total Hours</TableCell>
-            <TableCell align="left">Start Date</TableCell>
+            <TableCell align="center">Client Name</TableCell>
+            <TableCell align="center">Total Hours</TableCell>
+            <TableCell align="center">Start Date</TableCell>
+            <TableCell align="center">Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -79,9 +83,12 @@ export default function CustomTable() {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell align="left">{row.name}</TableCell>
-              <TableCell align="left">{row.clientName}</TableCell>
-              <TableCell align="left">{row.totalHours} Hours</TableCell>
-              <TableCell align="left">{row.startDate}</TableCell>
+              <TableCell align="center">{row.clientName}</TableCell>
+              <TableCell align="center">{row.totalHours} Hours</TableCell>
+              <TableCell align="center">{row.startDate}</TableCell>
+              <TableCell align="center">
+                <Link href="/">View</Link>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

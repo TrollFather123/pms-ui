@@ -14,9 +14,14 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Typography from "@mui/material/Typography";
 import { Box, Container } from "@mui/system";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  sendEmailVerification
+} from "firebase/auth";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { Controller, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { app } from "../../firebase/firebase";
@@ -62,19 +67,7 @@ export default function SignUpMain({ pathName }: LinkProps) {
       password: ""
     }
   });
-
-  const getCurrentUser = async () => {
-    try {
-      const user = getAuth().currentUser?.email;
-      const user_doc = await getDoc(
-        doc(getFirestore(), "users", user as string)
-      );
-      console.log(user_doc.data(), user_doc.id);
-    } catch (err) {
-      throw err;
-    }
-  };
-
+  const router = useRouter();
   const onSubmit = (data: RegisterDataType) => {
     console.log(data, "data");
     createUserWithEmailAndPassword(auth, data?.email, data?.password)
@@ -87,7 +80,17 @@ export default function SignUpMain({ pathName }: LinkProps) {
             lastName: data?.lastName,
             role: data?.role
           });
-          getCurrentUser();
+
+          await sendEmailVerification(user);
+          const emailVerificationInterval = setInterval(async () => {
+            await user.reload();
+            if (user.emailVerified) {
+              clearInterval(emailVerificationInterval);
+              router.push("/");
+            } else {
+              alert(`Check your mailId(${data?.email})`);
+            }
+          }, 2000);
         } catch (err) {
           throw err;
         }

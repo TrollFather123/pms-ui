@@ -9,7 +9,7 @@ export const SignInWrapper = styled(Box)`
     border-radius: 29px;
     border: 1px solid ${primaryColors?.borderColor};
     background: ${primaryColors?.white};
-    max-width: 609px;
+    width: 609px;
     margin: 0 auto;
     @media (max-width: 1199px) {
       padding: 40px 30px;

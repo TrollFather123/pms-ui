@@ -1,11 +1,10 @@
 /* eslint-disable no-console */
 import { GetProfileDetails } from "@/api/functions/user.api";
-import { useMutation, useQuery } from "react-query";
-import { parseCookies } from "nookies";
 import { logout, setLoginData } from "@/reduxtoolkit/slices/userSlice";
-import { useAppSelector } from "./useAppSelector";
-import { useAppDispatch } from "./useAppDispatch";
 import { Cookies } from "react-cookie";
+import { useQuery } from "react-query";
+import { useAppDispatch } from "./useAppDispatch";
+import { useAppSelector } from "./useAppSelector";
 
 const useUser = () => {
   const cookie = new Cookies();
@@ -24,9 +23,8 @@ const useUser = () => {
     },
     onError() {
       dispatch(logout());
-    },
+    }
   });
-
 
   return { ...profileDetails };
 };

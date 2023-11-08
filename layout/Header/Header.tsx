@@ -21,15 +21,18 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import { getAuth, signOut } from "firebase/auth";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { app } from "../../firebase/firebase";
 
 // const CustomButton = dynamic(() => import("@/ui/Buttons/CustomButton"));
 
 interface Props {
   window?: () => Window;
 }
-
+const auth = getAuth(app);
 export default function Header(props: Props) {
   console.log(props);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -79,6 +82,34 @@ export default function Header(props: Props) {
       document.querySelector(".main_head")?.classList.remove("overflow_active");
     }
   };
+
+  const [user, setUser] = useState("");
+
+  const getCurrentUser = async () => {
+    try {
+      const user_email = getAuth().currentUser?.email;
+      const user_doc = await getDoc(
+        doc(getFirestore(), "users", user_email as string)
+      );
+      console.log(user_doc.data(), "user_doc");
+      setUser(user_doc?.data()?.firstName);
+    } catch (err) {
+      throw err;
+    }
+  };
+
+  const SignOutUser = async () => {
+    try {
+      await signOut(auth);
+      console.log("User signed out successfully");
+    } catch (error) {
+      console.error("Sign out error", error);
+    }
+  };
+
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
 
   return (
     <HeaderWrap sx={{ display: "flex" }} className="main_head">
@@ -166,7 +197,7 @@ export default function Header(props: Props) {
                     src={assest?.avatar_img}
                     className="avatar_image"
                   />
-                  <Typography variant="caption">Hello John!</Typography>
+                  <Typography variant="caption">Hello {user}!</Typography>
                   <i>
                     <Image
                       src={assest?.dropdown_icon}
@@ -183,6 +214,7 @@ export default function Header(props: Props) {
                   onClose={handleCloseUser}
                 >
                   <MenuItem onClick={handleCloseUser}>Profile</MenuItem>
+                  <MenuItem onClick={SignOutUser}>Logout</MenuItem>
                 </Menu>
               </ListItem>
             </List>
